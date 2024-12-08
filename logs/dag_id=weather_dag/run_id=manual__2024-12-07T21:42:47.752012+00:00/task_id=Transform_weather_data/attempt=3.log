@@ -1,0 +1,27 @@
+[2024-12-07T21:44:55.909+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_dag.Transform_weather_data manual__2024-12-07T21:42:47.752012+00:00 [queued]>
+[2024-12-07T21:44:55.917+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_dag.Transform_weather_data manual__2024-12-07T21:42:47.752012+00:00 [queued]>
+[2024-12-07T21:44:55.918+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 3
+[2024-12-07T21:44:55.928+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): Transform_weather_data> on 2024-12-07 21:42:47.752012+00:00
+[2024-12-07T21:44:55.933+0000] {standard_task_runner.py:60} INFO - Started process 18948 to run task
+[2024-12-07T21:44:55.937+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'weather_dag', 'Transform_weather_data', 'manual__2024-12-07T21:42:47.752012+00:00', '--job-id', '399', '--raw', '--subdir', 'DAGS_FOLDER/extract.py', '--cfg-path', '/tmp/tmpro46uk2r']
+[2024-12-07T21:44:55.938+0000] {standard_task_runner.py:88} INFO - Job 399: Subtask Transform_weather_data
+[2024-12-07T21:44:55.950+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-12-07T21:44:55.992+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_dag.Transform_weather_data manual__2024-12-07T21:42:47.752012+00:00 [running]> on host 8271fbcad3f4
+[2024-12-07T21:44:56.113+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thiernosidybah232@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_dag' AIRFLOW_CTX_TASK_ID='Transform_weather_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-07T21:42:47.752012+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-07T21:42:47.752012+00:00'
+[2024-12-07T21:44:56.141+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract.py", line 43, in transform_data
+    city = data["name"]
+KeyError: 'name'
+[2024-12-07T21:44:56.148+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=weather_dag, task_id=Transform_weather_data, execution_date=20241207T214247, start_date=20241207T214455, end_date=20241207T214456
+[2024-12-07T21:44:56.160+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 399 for task Transform_weather_data ('name'; 18948)
+[2024-12-07T21:44:56.188+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-12-07T21:44:56.218+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

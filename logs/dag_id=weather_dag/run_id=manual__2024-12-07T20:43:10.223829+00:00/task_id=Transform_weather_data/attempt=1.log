@@ -1,0 +1,44 @@
+[2024-12-07T20:43:14.631+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_dag.Transform_weather_data manual__2024-12-07T20:43:10.223829+00:00 [queued]>
+[2024-12-07T20:43:14.635+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_dag.Transform_weather_data manual__2024-12-07T20:43:10.223829+00:00 [queued]>
+[2024-12-07T20:43:14.635+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-12-07T20:43:14.643+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): Transform_weather_data> on 2024-12-07 20:43:10.223829+00:00
+[2024-12-07T20:43:14.647+0000] {standard_task_runner.py:60} INFO - Started process 16091 to run task
+[2024-12-07T20:43:14.650+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'weather_dag', 'Transform_weather_data', 'manual__2024-12-07T20:43:10.223829+00:00', '--job-id', '358', '--raw', '--subdir', 'DAGS_FOLDER/extract.py', '--cfg-path', '/tmp/tmpiyhz4y5g']
+[2024-12-07T20:43:14.651+0000] {standard_task_runner.py:88} INFO - Job 358: Subtask Transform_weather_data
+[2024-12-07T20:43:14.661+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-12-07T20:43:14.686+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_dag.Transform_weather_data manual__2024-12-07T20:43:10.223829+00:00 [running]> on host 8271fbcad3f4
+[2024-12-07T20:43:14.745+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thiernosidybah232@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_dag' AIRFLOW_CTX_TASK_ID='Transform_weather_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-07T20:43:10.223829+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-07T20:43:10.223829+00:00'
+[2024-12-07T20:43:14.756+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 934, in _finalize_columns_and_data
+    columns = _validate_or_indexify_columns(contents, columns)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 981, in _validate_or_indexify_columns
+    raise AssertionError(
+AssertionError: 10 columns passed, passed data had 12 columns
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract.py", line 87, in transform_data
+    dataset = pd.DataFrame(transformed_values, columns=COLUMNS)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 782, in __init__
+    arrays, columns, index = nested_data_to_arrays(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 498, in nested_data_to_arrays
+    arrays, columns = to_arrays(data, columns, dtype=dtype)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 840, in to_arrays
+    content, columns = _finalize_columns_and_data(arr, columns, dtype)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/internals/construction.py", line 937, in _finalize_columns_and_data
+    raise ValueError(err) from err
+ValueError: 10 columns passed, passed data had 12 columns
+[2024-12-07T20:43:14.764+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=weather_dag, task_id=Transform_weather_data, execution_date=20241207T204310, start_date=20241207T204314, end_date=20241207T204314
+[2024-12-07T20:43:14.770+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 358 for task Transform_weather_data (10 columns passed, passed data had 12 columns; 16091)
+[2024-12-07T20:43:14.781+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-12-07T20:43:14.801+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

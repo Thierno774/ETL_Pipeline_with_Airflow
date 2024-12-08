@@ -1,0 +1,37 @@
+[2024-12-06T20:50:09.717+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_dag.transform_load_weather_data manual__2024-12-06T20:49:00.802575+00:00 [queued]>
+[2024-12-06T20:50:09.722+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_dag.transform_load_weather_data manual__2024-12-06T20:49:00.802575+00:00 [queued]>
+[2024-12-06T20:50:09.722+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2024-12-06T20:50:09.729+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_load_weather_data> on 2024-12-06 20:49:00.802575+00:00
+[2024-12-06T20:50:09.733+0000] {standard_task_runner.py:60} INFO - Started process 5423 to run task
+[2024-12-06T20:50:09.736+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'weather_dag', 'transform_load_weather_data', 'manual__2024-12-06T20:49:00.802575+00:00', '--job-id', '25', '--raw', '--subdir', 'DAGS_FOLDER/extract.py', '--cfg-path', '/tmp/tmp_g17g0_3']
+[2024-12-06T20:50:09.736+0000] {standard_task_runner.py:88} INFO - Job 25: Subtask transform_load_weather_data
+[2024-12-06T20:50:09.747+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-12-06T20:50:09.783+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_dag.transform_load_weather_data manual__2024-12-06T20:49:00.802575+00:00 [running]> on host 8a5e48d7ee4d
+[2024-12-06T20:50:09.847+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thiernosidybah232@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_dag' AIRFLOW_CTX_TASK_ID='transform_load_weather_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-06T20:49:00.802575+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-06T20:49:00.802575+00:00'
+[2024-12-06T20:50:09.870+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract.py", line 60, in transform_data
+    dataset.to_csv(f"{df_string}.csv", index= False)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 3772, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/formats/format.py", line 1186, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/formats/csvs.py", line 240, in save
+    with get_handle(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/common.py", line 737, in get_handle
+    check_parent_directory(str(handle))
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/io/common.py", line 600, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: '/my_home'
+[2024-12-06T20:50:09.881+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=weather_dag, task_id=transform_load_weather_data, execution_date=20241206T204900, start_date=20241206T205009, end_date=20241206T205009
+[2024-12-06T20:50:09.892+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 25 for task transform_load_weather_data (Cannot save file into a non-existent directory: '/my_home'; 5423)
+[2024-12-06T20:50:09.907+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-12-06T20:50:09.930+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

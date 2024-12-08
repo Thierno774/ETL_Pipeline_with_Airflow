@@ -1,0 +1,27 @@
+[2024-12-06T22:00:00.791+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_dag.save_to_csv manual__2024-12-06T21:59:53.777779+00:00 [queued]>
+[2024-12-06T22:00:00.801+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_dag.save_to_csv manual__2024-12-06T21:59:53.777779+00:00 [queued]>
+[2024-12-06T22:00:00.802+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-12-06T22:00:00.813+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): save_to_csv> on 2024-12-06 21:59:53.777779+00:00
+[2024-12-06T22:00:00.817+0000] {standard_task_runner.py:60} INFO - Started process 8498 to run task
+[2024-12-06T22:00:00.820+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'weather_dag', 'save_to_csv', 'manual__2024-12-06T21:59:53.777779+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/extract.py', '--cfg-path', '/tmp/tmpbkvdv7r6']
+[2024-12-06T22:00:00.821+0000] {standard_task_runner.py:88} INFO - Job 65: Subtask save_to_csv
+[2024-12-06T22:00:00.835+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-12-06T22:00:00.875+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_dag.save_to_csv manual__2024-12-06T21:59:53.777779+00:00 [running]> on host 8a5e48d7ee4d
+[2024-12-06T22:00:00.984+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thiernosidybah232@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_dag' AIRFLOW_CTX_TASK_ID='save_to_csv' AIRFLOW_CTX_EXECUTION_DATE='2024-12-06T21:59:53.777779+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-06T21:59:53.777779+00:00'
+[2024-12-06T22:00:00.986+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 197, in execute
+    self.op_kwargs = self.determine_kwargs(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 208, in determine_kwargs
+    return KeywordParameters.determine(self.python_callable, self.op_args, context).unpacking()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/operator_helpers.py", line 163, in determine
+    raise ValueError(f"The key {name!r} in args is a part of kwargs and therefore reserved.")
+ValueError: The key 'task_instance' in args is a part of kwargs and therefore reserved.
+[2024-12-06T22:00:00.996+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=weather_dag, task_id=save_to_csv, execution_date=20241206T215953, start_date=20241206T220000, end_date=20241206T220000
+[2024-12-06T22:00:01.011+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 65 for task save_to_csv (The key 'task_instance' in args is a part of kwargs and therefore reserved.; 8498)
+[2024-12-06T22:00:01.031+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-12-06T22:00:01.057+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

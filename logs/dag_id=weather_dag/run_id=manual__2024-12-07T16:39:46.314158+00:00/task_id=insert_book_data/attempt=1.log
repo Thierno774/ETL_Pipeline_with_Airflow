@@ -1,0 +1,58 @@
+[2024-12-07T16:39:54.552+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_dag.insert_book_data manual__2024-12-07T16:39:46.314158+00:00 [queued]>
+[2024-12-07T16:39:54.556+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_dag.insert_book_data manual__2024-12-07T16:39:46.314158+00:00 [queued]>
+[2024-12-07T16:39:54.556+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-12-07T16:39:54.564+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): insert_book_data> on 2024-12-07 16:39:46.314158+00:00
+[2024-12-07T16:39:54.569+0000] {standard_task_runner.py:60} INFO - Started process 4748 to run task
+[2024-12-07T16:39:54.572+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'weather_dag', 'insert_book_data', 'manual__2024-12-07T16:39:46.314158+00:00', '--job-id', '199', '--raw', '--subdir', 'DAGS_FOLDER/extract.py', '--cfg-path', '/tmp/tmpiwvzcqwb']
+[2024-12-07T16:39:54.573+0000] {standard_task_runner.py:88} INFO - Job 199: Subtask insert_book_data
+[2024-12-07T16:39:54.591+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-12-07T16:39:54.635+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_dag.insert_book_data manual__2024-12-07T16:39:46.314158+00:00 [running]> on host 8271fbcad3f4
+[2024-12-07T16:39:54.734+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thiernosidybah232@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_dag' AIRFLOW_CTX_TASK_ID='insert_book_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-07T16:39:46.314158+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-07T16:39:46.314158+00:00'
+[2024-12-07T16:39:54.791+0000] {base.py:83} INFO - Using connection ID 'weather_database_connection' for task execution.
+[2024-12-07T16:39:54.795+0000] {sql.py:450} INFO - Running statement: 
+     INSERT INTO Test (City,
+                            Description, 
+                            Temperature_C, 
+                            Feels_Like_C, 
+                            Pressure, 
+                            Humidity,
+                            Wind_Speed,
+                            Time_of_Record, 
+                            Sunrise_Local_time,
+                            Sunset_Local_time)
+
+                VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+
+
+    , parameters: (0    Arrondissement de Nantes
+Name: City, dtype: object, 0    broken clouds
+Name: Description, dtype: object, 0    7.96
+Name: Temperature_C, dtype: float64, 0    3.69
+Name: Feels_Like_C, dtype: float64, 0    1014
+Name: Pressure, dtype: int64, 0    66
+Name: Humidity, dtype: int64, 0    9.26
+Name: Wind_Speed, dtype: float64, 0   2024-12-07 17:36:01
+Name: Time_of_Record, dtype: datetime64[ns], 0   2024-12-07 08:39:14
+Name: Sunrise_Local_time, dtype: datetime64[ns], 0   2024-12-07 17:16:58
+Name: Sunset_Local_time, dtype: datetime64[ns])
+[2024-12-07T16:39:54.798+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract.py", line 84, in insert_book_data_into_postgre
+    postgres_hook.run(insert_query, parameters = (data['City'],
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 398, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 453, in _run_command
+    cur.execute(sql_statement, parameters)
+psycopg2.ProgrammingError: can't adapt type 'Series'
+[2024-12-07T16:39:54.806+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=weather_dag, task_id=insert_book_data, execution_date=20241207T163946, start_date=20241207T163954, end_date=20241207T163954
+[2024-12-07T16:39:54.821+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 199 for task insert_book_data (can't adapt type 'Series'; 4748)
+[2024-12-07T16:39:54.863+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-12-07T16:39:54.890+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

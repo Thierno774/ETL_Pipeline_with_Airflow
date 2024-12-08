@@ -1,0 +1,39 @@
+[2024-12-07T17:05:40.205+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_dag.insert_book_data manual__2024-12-07T17:03:28.251882+00:00 [queued]>
+[2024-12-07T17:05:40.216+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_dag.insert_book_data manual__2024-12-07T17:03:28.251882+00:00 [queued]>
+[2024-12-07T17:05:40.216+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 3
+[2024-12-07T17:05:40.232+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): insert_book_data> on 2024-12-07 17:03:28.251882+00:00
+[2024-12-07T17:05:40.238+0000] {standard_task_runner.py:60} INFO - Started process 6011 to run task
+[2024-12-07T17:05:40.243+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'weather_dag', 'insert_book_data', 'manual__2024-12-07T17:03:28.251882+00:00', '--job-id', '220', '--raw', '--subdir', 'DAGS_FOLDER/extract.py', '--cfg-path', '/tmp/tmpbh33yblx']
+[2024-12-07T17:05:40.244+0000] {standard_task_runner.py:88} INFO - Job 220: Subtask insert_book_data
+[2024-12-07T17:05:40.260+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194: DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+  SQL_ALCHEMY_CONN = conf.get("database", "SQL_ALCHEMY_CONN")
+
+[2024-12-07T17:05:40.301+0000] {task_command.py:423} INFO - Running <TaskInstance: weather_dag.insert_book_data manual__2024-12-07T17:03:28.251882+00:00 [running]> on host 8271fbcad3f4
+[2024-12-07T17:05:40.420+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='thiernosidybah232@gmail.com' AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='weather_dag' AIRFLOW_CTX_TASK_ID='insert_book_data' AIRFLOW_CTX_EXECUTION_DATE='2024-12-07T17:03:28.251882+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-12-07T17:03:28.251882+00:00'
+[2024-12-07T17:05:40.453+0000] {base.py:83} INFO - Using connection ID 'weather_database_connection' for task execution.
+[2024-12-07T17:05:40.455+0000] {sql.py:450} INFO - Running statement: INSERT INTO Test (City,Description,Temperature_C,Feels_Like_C,Pressure,Humidity,Wind_Speed,Time_of_Record,Sunrise_Local_time,Sunset_Local_time VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s), parameters: None
+[2024-12-07T17:05:40.456+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/extract.py", line 73, in insert_book_data_into_postgre
+    postgres_hook.run(sql, tuple(row))
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 398, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 455, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at or near "VALUES"
+LINE 1: ...me_of_Record,Sunrise_Local_time,Sunset_Local_time VALUES (%s...
+                                                             ^
+
+[2024-12-07T17:05:40.464+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=weather_dag, task_id=insert_book_data, execution_date=20241207T170328, start_date=20241207T170540, end_date=20241207T170540
+[2024-12-07T17:05:40.480+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 220 for task insert_book_data (syntax error at or near "VALUES"
+LINE 1: ...me_of_Record,Sunrise_Local_time,Sunset_Local_time VALUES (%s...
+                                                             ^
+; 6011)
+[2024-12-07T17:05:40.494+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-12-07T17:05:40.525+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

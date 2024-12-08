@@ -1,0 +1,2 @@
+coord,weather,base,main,visibility,wind,clouds,dt,sys,timezone,id,name,cod
+"{'lon': -1.5833, 'lat': 47.1667}","[{'id': 804, 'main': 'Clouds', 'description': 'overcast clouds', 'icon': '04n'}]",stations,"{'temp': 286.11, 'feels_like': 285.92, 'temp_min': 286.11, 'temp_max': 286.48, 'pressure': 1017, 'humidity': 94, 'sea_level': 1017, 'grnd_level': 1014}",10000,"{'speed': 5.66, 'deg': 230}",{'all': 100},1733522750,"{'type': 1, 'id': 6574, 'country': 'FR', 'sunrise': 1733470691, 'sunset': 1733501830}",3600,2990968,Arrondissement de Nantes,200
