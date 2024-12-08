@@ -88,7 +88,7 @@ def transform_data(task_instance):
     return  transformed_data
 
 ## Create function for to insert the data in database 
-def insert_book_data_into_postgre(task_instance): 
+def insert_data_into_postgres(task_instance): 
     transformed_data = task_instance.xcom_pull(task_ids = "Transform_weather_data")
     print(transformed_data)
     postgres_hook = PostgresHook(postgres_conn_id = "weather_database_connection")
@@ -179,8 +179,8 @@ with DAG( "weather_dag",
                     """
         )
         insert_weather_data_trask = PythonOperator(
-                task_id = "insert_book_data", 
-                python_callable = insert_book_data_into_postgre
+                task_id = "Load_Data", 
+                python_callable = insert_data_into_postgres
         )
 
         is_weather_api_ready >> extract_weather_data >>  Transform_data >> create_table_task >> insert_weather_data_trask
