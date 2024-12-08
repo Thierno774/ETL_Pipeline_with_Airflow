@@ -48,7 +48,7 @@ In the Airflow UI, go to the Admin tab and select Connections. Click the Create 
 
 Once you've set up the DAG and connections, the workflow will run automatically on the schedule you've set (default is daily). You can monitor the progress of the workflow in the Airflow UI.
 
-The transformed weather data will be saved to an S3 bucket in CSV format. You can use this data for analysis or visualization.
+The transformed weather data will be PostgreSQL database.
 
 # Customization
 
