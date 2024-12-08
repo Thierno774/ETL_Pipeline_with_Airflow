@@ -15,9 +15,6 @@ import os
 BASE_URL ="https://api.openweathermap.org/data/2.5/weather?q=" 
 CITY_NAME = "Nantes"
 API_KEY = os.environ.get("API_KEY")
-#API_KEY = "92a2228961d1701676a43daabb355f4d"
-
-#url = f"{BASE_URL}{CITY_NAME}&appid={API_KEY}"
 
 LIST_CITIES = ["Toulouse", "Nantes","Grenoble", "Marseille", 
                "Lyon", "Montreal", "New York", "Conakry", "Dakar"]
