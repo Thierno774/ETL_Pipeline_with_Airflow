@@ -1,5 +1,6 @@
 # Extract and Transform Weather Data with Airflow
-This project uses Apache Airflow to extract weather data from an API, transform the data, and load it in postgre database. The workflow is designed to run daily and can be easily customized to extract weather data for any city
+This project uses Apache Airflow to extract weather data from an API, transform the data, and load it in 
+postgreSQL database. The workflow is designed to run daily and can be easily customized to extract weather data for any city
 
 ![Sparkify Data Model](/images/Pipline_images.png)    
 
